@@ -17,7 +17,6 @@
 #include <QWheelEvent>
 
 #include "LinkedList.h"
-//#include "mynode.h"
 
 using namespace std;
 
@@ -70,11 +69,17 @@ private slots:
     void on_clearList_2_clicked();
 
 
+    void on_displayPortionButton_clicked();
+
+    void on_graphicsDisplayButton_clicked();
+
+    void on_displayPortionButton_2_clicked();
+
 private:
     Ui::GUILinkedList *ui;
-//    QGraphicsScene *scene;
+    QGraphicsScene *scene;
 //    QGraphicsEllipseItem *ellipse;
-//    QGraphicsRectItem *rectangle;
+    QGraphicsRectItem *rectangle;
 
     LinkedList<int> L1;     //int list
     LinkedList<double> D1;  //double list
@@ -92,10 +97,13 @@ private:
     Iterator<double> dt;    //double list iterator
     Iterator<string> st;    //string list iterator
 
-    int intCounter;
-    int dblCounter;
-    int strCounter;
-    int index;
+    int strCount;
+    int dblCount;
+    int intCount;
+
+    string intVar;
+    string dblVar;
+    string strVar;
 
 };
 

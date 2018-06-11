@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>688</width>
-    <height>605</height>
+    <width>981</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,7 +58,7 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>50</y>
+      <y>40</y>
       <width>121</width>
       <height>205</height>
      </rect>
@@ -105,7 +105,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>60</y>
+      <y>70</y>
       <width>111</width>
       <height>164</height>
      </rect>
@@ -167,7 +167,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>330</y>
+      <y>350</y>
       <width>111</width>
       <height>164</height>
      </rect>
@@ -199,11 +199,74 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>40</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="graphicsDisplayButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>240</y>
+      <width>256</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Display Graphics</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>620</y>
+      <width>181</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="portionBegin_2"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_14">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>End</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="portionEnd_2"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>40</y>
+      <y>20</y>
       <width>260</width>
       <height>243</height>
      </rect>
@@ -228,67 +291,22 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="displayPortionButton">
+         <property name="text">
+          <string>Display Portion</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QPushButton" name="remove_dupeButton_2">
-    <property name="geometry">
-     <rect>
-      <x>529</x>
-      <y>387</y>
-      <width>117</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove Duplicates</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pop_frontButton_2">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>350</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pop Front</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="selectSortButton_2">
-    <property name="geometry">
-     <rect>
-      <x>529</x>
-      <y>427</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select Sort</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="clearList_2">
-    <property name="geometry">
-     <rect>
-      <x>529</x>
-      <y>467</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear</string>
-    </property>
    </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>302</y>
+      <y>330</y>
       <width>258</width>
       <height>283</height>
      </rect>
@@ -314,7 +332,94 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="displayPortionButton_2">
+         <property name="text">
+          <string>Display Portion</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="comboBox"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>360</y>
+      <width>119</width>
+      <height>135</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QPushButton" name="pop_frontButton_2">
+       <property name="text">
+        <string>Pop Front</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="remove_dupeButton_2">
+       <property name="text">
+        <string>Remove Duplicates</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectSortButton_2">
+       <property name="text">
+        <string>Select Sort</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearList_2">
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>270</y>
+      <width>181</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="portionBegin"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>End</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="portionEnd"/>
        </item>
       </layout>
      </item>
@@ -333,6 +438,14 @@
    <zorder>layoutWidget_4</zorder>
    <zorder>displayButton</zorder>
    <zorder>comboBox</zorder>
+   <zorder>portionBegin</zorder>
+   <zorder>portionEnd</zorder>
+   <zorder>graphicsView</zorder>
+   <zorder>graphicsDisplayButton</zorder>
+   <zorder>label_7</zorder>
+   <zorder>pop_frontButton_2</zorder>
+   <zorder></zorder>
+   <zorder>layoutWidget_3</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

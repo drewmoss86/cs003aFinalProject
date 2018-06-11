@@ -748,18 +748,18 @@ public:
         E value;
 
         //traverse linked list
-        for(Node<E> *i = head; i != NULL; i = i->next)
+        for(Node<E> *i = head; i->next != NULL; i = i->next)
         {
             //set min pointer to i pointer
             min = i;
             //traverse subsequent nodes to compare with i
-            for(tail = i->next; tail != NULL; tail = tail->next)
+            for(Node<E> *tail = i->next; tail->next != NULL; tail = tail->next)
             {
                 //if the data value is less than the min
-                if(tail->data < min->data)
+                if(tail->next->data < min->data)
                 {
                     //reset min pointer to the tail
-                    min = tail;
+                    min = tail->next;
                 }
             }
 
@@ -790,61 +790,33 @@ public:
     ***********************************************************/
     void insert_sorted( const E& value )
     {
-        Node<E> *newNode = new Node<E>(value);
+        Node<E> *newNode = NULL;   // new node containing the value passed in.
+        Node<E> *current = NULL;   // pointer used to step through the IntList.
+        Node<E> *min = NULL;       //pointer to the lowest value
 
-        //sort the list in ascending order
-        select_sort();
+        newNode = new Node<E>(value);
 
-        if(isEmpty())
+        if (newNode->data < head->data)
         {
-            head = newNode;
-            tail = newNode;
+            push_front(value);
+
+        }
+
+        else if (newNode->data >= tail->data)
+        {
+            push_back(value);
         }
 
         else
         {
-
-            //if first node is greater than newNode
-            if(head->data > newNode->data)
+            for (current = head; current->next != NULL; current = current->next)
             {
-                //put newNode in front of list
-                push_front(newNode->data);
+                if (current->data < newNode->data)
+                   min = current;
             }
 
-            else
-            {
-                //set current to head
-                Node<E> *current = head;
-                //set tail to node after head
-                tail = current->next;
-
-                //continue to traverse node if tail value is less than newNode
-                while(tail->data < newNode->data && tail->next != NULL)
-                {
-                    //traverse current pointer
-                    current = current->next;
-                    //traverse tail pointer
-                    tail = tail->next;
-                }
-
-                //tail is pointing at end of list and less than new node
-                if(tail->data < newNode->data && tail->next == NULL)
-                {
-//                    push_back(newNode->data);
-                    //set current next to point to newNode
-                    tail->next = newNode;
-                    current = current->next;
-                    tail = tail->next;
-                }
-
-                //tail is greater than new node data and not at end of list
-                else if(tail->data > newNode->data)
-                {
-                    newNode->next = tail;
-                    current->next = newNode;
-                    current = newNode;
-                }
-            }
+            newNode->next = min->next;
+            min->next = newNode;
         }
     }
 
@@ -866,66 +838,55 @@ public:
     ***********************************************************/
     void remove_duplicates()
     {
-        Node<E> *duplicate_ptr = NULL;  //pointer to point to duplicate node
-        Node<E> *prev_ptr = NULL;  //pointer to point to node before duplicate node
-        Node<E> *remove_ptr = NULL;  //pointer to point to node to be removed
-
-        //sort list in ascending order
-        select_sort();
-
-        //if list is empty, do nothing
+        //if list is empty, terminate
         if(isEmpty())
         {
             return;
         }
 
-        else
+        //holds possible deplicate of current node
+        Node<E>* duplicate_ptr = NULL;
+
+        //points to the previous node before the duplicate
+        Node<E>* prev_ptr = head;
+
+        for(Node<E> *current = head; current != NULL; current = current->next)
         {
-            //point to node to be compared to rest of list
-            for(Node<E> *current = head; current != NULL; current = current->next)
+            duplicate_ptr = current->next;
+            prev_ptr = current;
+
+            while (duplicate_ptr != NULL)
             {
-                //set prev pointer to current
-                prev_ptr = current;
-                //set duplicate pointer to current next
-                duplicate_ptr = current->next;
-
-                //find if duplicate exists
-                while(duplicate_ptr != NULL)
+                if (current->data == duplicate_ptr->data)
                 {
+                    //holds temporary node
+                    Node<E>* remove_ptr = duplicate_ptr;
 
-                    //last duplicate node reached
-                    if(duplicate_ptr->data == current->data)
+                    //if the duplicate is the last element, fix tail
+                    if (duplicate_ptr == tail)
                     {
-                        remove_ptr = duplicate_ptr;
+                        duplicate_ptr = NULL;
+                        prev_ptr->next = NULL;
+                        tail = prev_ptr;
 
-                        //only one duplicate left
-                        if(duplicate_ptr == tail)
-                        {
-                            duplicate_ptr = NULL;
-                            prev_ptr->next = NULL;
-                            tail = prev_ptr;
-                            delete remove_ptr;
-                        }
-
-                        //more than one duplicate left
-                        else
-                        {
-                            duplicate_ptr = duplicate_ptr->next;
-                            prev_ptr->next = remove_ptr->next;
-                            delete remove_ptr;
-                        }
+                        delete remove_ptr;
                     }
-
                     else
                     {
-                        prev_ptr = prev_ptr->next;
+                        prev_ptr->next = duplicate_ptr->next;
                         duplicate_ptr = duplicate_ptr->next;
+
+                        delete remove_ptr;
                     }
-
                 }
-
+                else
+                {
+                    duplicate_ptr = duplicate_ptr->next;
+                    prev_ptr = prev_ptr->next;
+                }
             }
         }
+
     }
 
 
