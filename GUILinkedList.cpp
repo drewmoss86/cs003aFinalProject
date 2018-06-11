@@ -68,7 +68,7 @@ GUILinkedList::~GUILinkedList()
 *
 *  Method on_push_backButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method pushes back node in list
+*  This method pushes back node in original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -105,7 +105,7 @@ void GUILinkedList::on_push_backButton_clicked()
 *
 *  Method on_displayButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method prints values stored in original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -183,7 +183,7 @@ void GUILinkedList::on_displayButton_clicked()
 *
 *  Method on_push_frontButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method adds node to front of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -220,7 +220,7 @@ void GUILinkedList::on_push_frontButton_clicked()
 *
 *  Method on_pop_frontButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method deletes first node in original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -271,7 +271,7 @@ void GUILinkedList::on_pop_frontButton_clicked()
 *
 *  Method on_selectSortButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method sorts original list in ascending order
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -322,7 +322,7 @@ void GUILinkedList::on_selectSortButton_clicked()
 *
 *  Method on_insert_sortedButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method inserts node in sorted fashion of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -359,7 +359,7 @@ void GUILinkedList::on_insert_sortedButton_clicked()
 *
 *  Method on_remove_dupeButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method removes duplicate node of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -408,7 +408,7 @@ void GUILinkedList::on_remove_dupeButton_clicked()
 *
 *  Method on_copyListButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method makes a copy of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -457,7 +457,7 @@ void GUILinkedList::on_copyListButton_clicked()
 *
 *  Method on_displayCopy_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method makes a copy of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -551,7 +551,7 @@ void GUILinkedList::on_displayCopy_2_clicked()
 *
 *  Method on_pop_frontButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method deletes front node in copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -602,7 +602,7 @@ void GUILinkedList::on_pop_frontButton_2_clicked()
 *
 *  Method on_remove_dupeButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method removes duplicate node in copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -651,7 +651,7 @@ void GUILinkedList::on_remove_dupeButton_2_clicked()
 *
 *  Method on_selectSortButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method sorts list in ascending order in copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -665,6 +665,7 @@ void GUILinkedList::on_selectSortButton_2_clicked()
 {
     if(ui->IntList->isChecked())
     {
+        //if list is empty
         if(vIntList[ui->comboBox->currentIndex()-1].isEmpty())
         {
             ui->textEdit_2->setText("IntList Empty");
@@ -674,6 +675,7 @@ void GUILinkedList::on_selectSortButton_2_clicked()
 
     else if(ui->DoubleList->isChecked())
     {
+        //if list is empty
         if(vDblList[ui->comboBox->currentIndex()-1].isEmpty())
         {
             ui->textEdit_2->setText("DblList Empty");
@@ -683,6 +685,7 @@ void GUILinkedList::on_selectSortButton_2_clicked()
 
     else if(ui->StringList->isChecked())
     {
+        //if list is empty
         if(vStrList[ui->comboBox->currentIndex()-1].isEmpty())
         {
             ui->textEdit_2->setText("StrList Empty");
@@ -700,7 +703,7 @@ void GUILinkedList::on_selectSortButton_2_clicked()
 *
 *  Method on_push_backButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method pushes back value to copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -712,22 +715,53 @@ void GUILinkedList::on_selectSortButton_2_clicked()
 ***********************************************************/
 void GUILinkedList::on_push_backButton_2_clicked()
 {
+    //if list is empty
     if(ui->IntList->isChecked())
     {
-        vIntList[ui->comboBox->currentIndex()-1].
-                push_back(ui->textLine_2->text().toInt());
+        //if list is empty
+        if(vIntList[ui->comboBox->currentIndex()-1].isEmpty())
+        {
+            ui->textEdit_2->setText("IntList Empty");
+        }
+
+        else
+        {
+            vIntList[ui->comboBox->currentIndex()-1].
+                    push_back(ui->textLine_2->text().toInt());
+        }
+
     }
 
     else if(ui->DoubleList->isChecked())
     {
-        vDblList[ui->comboBox->currentIndex()-1].
-                push_back(ui->textLine_2->text().toDouble());
+        //if list is empty
+        if(vDblList[ui->comboBox->currentIndex()-1].isEmpty())
+        {
+            ui->textEdit_2->setText("IntList Empty");
+        }
+
+        else
+        {
+            vDblList[ui->comboBox->currentIndex()-1].
+                    push_back(ui->textLine_2->text().toDouble());
+        }
+
     }
 
     else if(ui->StringList->isChecked())
     {
-        vStrList[ui->comboBox->currentIndex()-1].
-                push_back(ui->textLine_2->text().toStdString());
+        //if list is empty
+        if(vStrList[ui->comboBox->currentIndex()-1].isEmpty())
+        {
+            ui->textEdit_2->setText("IntList Empty");
+        }
+
+        else
+        {
+            vStrList[ui->comboBox->currentIndex()-1].
+                    push_back(ui->textLine_2->text().toStdString());
+        }
+
     }
 
     else
@@ -740,7 +774,7 @@ void GUILinkedList::on_push_backButton_2_clicked()
 *
 *  Method on_push_frontButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method addes node to front of copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -780,7 +814,7 @@ void GUILinkedList::on_push_frontButton_2_clicked()
 *
 *  Method operator=(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method makes a deep copy of original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -820,7 +854,7 @@ void GUILinkedList::on_insert_sortedButton_2_clicked()
 *
 *  Method on_clearList_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method deletes copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -861,7 +895,7 @@ void GUILinkedList::on_clearList_2_clicked()
 *
 *  Method on_clearList_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method deletes original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -915,7 +949,7 @@ void GUILinkedList::on_clearList_clicked()
 *
 *  Method on_displayPortionButton_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method displays a portion of the original list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -927,22 +961,25 @@ void GUILinkedList::on_clearList_clicked()
 ***********************************************************/
 void GUILinkedList::on_displayPortionButton_clicked()
 {
-    int start;
-    int end;
-    int count;
+    int start; //intger value for where to begin portion
+    int end;   //intger value for where to end portion
+    int count; //count node to match start and end portion
 
-    count = 1;
+    count = 1; //initialize count
+
     start = ui->portionBegin->text().toInt();
     end = ui->portionEnd->text().toInt();
 
     if(ui->portionBegin->text() == "" || ui->portionEnd->text() == "")
     {
+        //error message if no values entered for portion
         QMessageBox::information(this, tr("Invalid!"),
                                  tr("Please enter some values"),0);
     }
 
     else if(start > end)
     {
+        //error message for invalid range
         QMessageBox::information(this,tr("Invalid!"),
                                  tr("Invalid range"),0);
     }
@@ -1019,6 +1056,7 @@ void GUILinkedList::on_displayPortionButton_clicked()
 
     else
     {
+        //error message if type not selected
         QMessageBox::information(this, tr("Invalid!"),
                                  tr("Please select a type"),0);
     }
@@ -1027,7 +1065,7 @@ void GUILinkedList::on_displayPortionButton_clicked()
 *
 *  Method on_displayPortionButton_2_clicked(): Class GUILinkedList
 *  _________________________________________________________
-*  This method prints values stored in node of linked list
+*  This method displays a portion of the copied list
 *  _________________________________________________________
 *  PRE-CONDITIONS
 *  none
@@ -1039,22 +1077,25 @@ void GUILinkedList::on_displayPortionButton_clicked()
 ***********************************************************/
 void GUILinkedList::on_displayPortionButton_2_clicked()
 {
-    int start;
-    int end;
-    int count;
+    int start; //intger value for where to begin portion
+    int end;   //intger value for where to end portion
+    int count; //count node to match start and end portion
 
-    count = 1;
+    count = 1; //initialize count
+
     start = ui->portionBegin_2->text().toInt();
     end = ui->portionEnd_2->text().toInt();
 
     if(ui->portionBegin_2->text() == "" || ui->portionEnd_2->text() == "")
     {
+        //error message if no values entered for portion
         QMessageBox::information(this, tr("Invalid!"),
                                  tr("Please enter some values"),0);
     }
 
     else if(start > end)
     {
+        //error message for invalid range
         QMessageBox::information(this,tr("Invalid!"),
                                  tr("Invalid range"),0);
     }
@@ -1134,6 +1175,7 @@ void GUILinkedList::on_displayPortionButton_2_clicked()
 
     else
     {
+        //error message if type not selected
         QMessageBox::information(this, tr("Invalid!"),
                                  tr("Please select a type"),0);
     }
