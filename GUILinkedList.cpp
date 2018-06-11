@@ -8,9 +8,6 @@
  **************************************************************************/
 #include "GUILinkedList.h"
 #include "ui_GUILinkedList.h"
-//#include "LinkedList.h"
-
-//#include <iostream>
 #include <cstdlib>
 #include <string>
 #include <QMessageBox>
