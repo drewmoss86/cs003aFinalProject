@@ -121,7 +121,8 @@ public:
     Iterator<E> operator++()
     {
         current = current->next;
-        return *this;
+
+        return *this ;
     }
 
     //This function overloads the equality operator.
@@ -204,12 +205,13 @@ public:
     ***********************************************************/
     LinkedList( const LinkedList<E>& source )
     {
+        Node<E> *current = NULL;
         //initialize list to be copied from source list
         head = new Node<E>(source.head->data);
         //current pointer to traverse source list
         Node<E> *source_current = source.head->next;
         //point tail to head
-        tail = head;
+        current = head;
 
         //if source head is empty, do nothing
         if(source.head == NULL)
@@ -223,11 +225,13 @@ public:
             while(source_current != NULL)
             {
                 //create new node to be added to list
-                tail->next = new Node<E>(source_current->data);
-                //traverse new list
-                tail = tail->next;
+                current->next = new Node<E>(source_current->data);
                 //traverse source list
                 source_current = source_current->next;
+                //traverse new list
+                tail = current->next;
+                current = tail;
+
             }
         }
 
@@ -269,6 +273,7 @@ public:
                 delete remove_ptr;
             }
 
+            cout << "list deleted" << endl;
             //point tail to head when head reaches null
             tail = head;
         }
@@ -292,7 +297,7 @@ public:
     ***********************************************************/
     LinkedList<E> & operator=( const LinkedList<E>& source )
     {
-        Node<E> *source_current = NULL;
+        Node<E> *current = NULL;
 
         //check if list has already been assigned
         if(this != &source)
@@ -309,24 +314,27 @@ public:
             {
                 //initialize list to be copied from source list
                 head = new Node<E>(source.head->data);
-
+                current = head;
                 //point tail to head
-                tail = head;
+                tail = source.head;
                 //current pointer to traverse source list
-                source_current = source.head;
+//                source_current = source.head;
                 //traverse to next source node
-                source_current = source_current->next;
+//                source_current = source_current->next;
+                tail = tail->next;
 
                 //traverse list to be copied
-                while(source_current != NULL)
+                while(tail != NULL)
                 {
                     //create new node to be added to list
-                    tail->next = new Node<E>(source_current->data);
+                    current->next = new Node<E>(tail->data);
                     //traverse new list
-                    tail = tail->next;
+                    current = current->next;
                     //traverse source list
-                    source_current = source_current->next;
+                    tail = tail->next;
                 }
+
+                tail = current;
 
             }
 
@@ -626,10 +634,13 @@ public:
         //if not empty
         else
         {
+
             //create next node after tail
             tail->next = newNode;
+                        cout << "\ntail->next: " << tail->next->data;
             //traverse tail to the new node
             tail = tail->next;
+            cout << "\ntail: " << tail->data;
         }
     }
 
@@ -856,7 +867,7 @@ public:
     void remove_duplicates()
     {
         Node<E> *duplicate_ptr = NULL;  //pointer to point to duplicate node
-        Node<E> *prev_ptr = head;  //pointer to point to node before duplicate node
+        Node<E> *prev_ptr = NULL;  //pointer to point to node before duplicate node
         Node<E> *remove_ptr = NULL;  //pointer to point to node to be removed
 
         //sort list in ascending order

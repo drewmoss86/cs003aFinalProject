@@ -95,10 +95,10 @@ void GUILinkedList::on_displayButton_clicked()
             {
                 var += to_string(*it);
                 var += " ";
-                ui->textEdit->setText(QString::fromStdString(var));
     //                rectangle = scene->addRect(10,10,100,50,blackPen);
     //                QString::fromStdString(var)
             }
+            ui->textEdit->setText(QString::fromStdString(var));
         }
     }
 
@@ -116,8 +116,8 @@ void GUILinkedList::on_displayButton_clicked()
             {
                 var += to_string(*dt);
                 var += " ";
-                ui->textEdit->setText(QString::fromStdString(var));
             }
+            ui->textEdit->setText(QString::fromStdString(var));
         }
     }
 
@@ -135,8 +135,8 @@ void GUILinkedList::on_displayButton_clicked()
             {
                 var += *st;
                 var += " ";
-                ui->textEdit->setText(QString::fromStdString(var));
             }
+            ui->textEdit->setText(QString::fromStdString(var));
         }
     }
 
@@ -347,8 +347,16 @@ void GUILinkedList::on_copyListButton_clicked()
 void GUILinkedList::on_displayCopy_2_clicked()
 {
     string var;
+    index = 0;
 
-    if(ui->IntList->isChecked())
+    if((ui->comboBox->currentIndex() == -1) && (ui->IntList->isChecked() ||
+        ui->DoubleList->isChecked() || ui->StringList->isChecked()))
+    {
+        QMessageBox::information(this, tr("Invalid!"),
+                                 tr("Please copy a list"),0);
+    }
+
+    else if(ui->IntList->isChecked() && ui->comboBox->currentIndex() >= 0)
     {
         var = "IntList Copy: ";
         if(vIntList[ui->comboBox->currentIndex()].isEmpty())
@@ -363,12 +371,12 @@ void GUILinkedList::on_displayCopy_2_clicked()
             {
                 var += to_string(*it);
                 var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
             }
+            ui->textEdit_2->setText(QString::fromStdString(var));
         }
     }
 
-    else if(ui->DoubleList->isChecked())
+    else if(ui->DoubleList->isChecked() && ui->comboBox->currentIndex() >= 0)
     {
         var = "DblList Copy: ";
         if(vDblList[ui->comboBox->currentIndex()].isEmpty())
@@ -383,12 +391,13 @@ void GUILinkedList::on_displayCopy_2_clicked()
             {
                 var += to_string(*dt);
                 var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
             }
+            ui->textEdit_2->setText(QString::fromStdString(var));
+
         }
     }
 
-    else if(ui->StringList->isChecked())
+    else if(ui->StringList->isChecked() && ui->comboBox->currentIndex() >= 0)
     {
         var = "StrList Copy: ";
         if(vStrList[ui->comboBox->currentIndex()].isEmpty())
@@ -403,70 +412,70 @@ void GUILinkedList::on_displayCopy_2_clicked()
             {
                 var += *st;
                 var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
             }
+            ui->textEdit_2->setText(QString::fromStdString(var));
         }
     }
 
-    else if(ui->IntList->isChecked())
-    {
-        var = "IntList Copy: ";
-        if(vIntList[ui->comboBox->currentIndex()].isEmpty())
-        {
-            ui->textEdit_2->setText("IntList empty");
-        }
+//    else if(ui->IntList->isChecked())
+//    {
+//        var = "IntList Copy: ";
+//        if(vIntList[ui->comboBox->currentIndex()].isEmpty())
+//        {
+//            ui->textEdit_2->setText("IntList empty");
+//        }
 
-        else
-        {
-            for(it = vIntList[ui->comboBox->currentIndex()].begin();
-                it != vIntList[ui->comboBox->currentIndex()].end(); ++it)
-            {
-                var += to_string(*it);
-                var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
-            }
-        }
-    }
+//        else
+//        {
+//            for(it = vIntList[ui->comboBox->currentIndex()].begin();
+//                it != vIntList[ui->comboBox->currentIndex()].end(); ++it)
+//            {
+//                var += to_string(*it);
+//                var += " ";
+//                ui->textEdit_2->setText(QString::fromStdString(var));
+//            }
+//        }
+//    }
 
-    else if(ui->DoubleList->isChecked())
-    {
-        var = "DblList Copy: ";
-        if(vDblList[ui->comboBox->currentIndex()].isEmpty())
-        {
-            ui->textEdit_2->setText("DblList empty");
-        }
+//    else if(ui->DoubleList->isChecked())
+//    {
+//        var = "DblList Copy: ";
+//        if(vDblList[ui->comboBox->currentIndex()].isEmpty())
+//        {
+//            ui->textEdit_2->setText("DblList empty");
+//        }
 
-        else
-        {
-            for(dt = vDblList[ui->comboBox->currentIndex()].begin();
-                dt != vDblList[ui->comboBox->currentIndex()].end(); ++dt)
-            {
-                var += to_string(*dt);
-                var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
-            }
-        }
-    }
+//        else
+//        {
+//            for(dt = vDblList[ui->comboBox->currentIndex()].begin();
+//                dt != vDblList[ui->comboBox->currentIndex()].end(); ++dt)
+//            {
+//                var += to_string(*dt);
+//                var += " ";
+//                ui->textEdit_2->setText(QString::fromStdString(var));
+//            }
+//        }
+//    }
 
-    else if(ui->StringList->isChecked())
-    {
-        var = "StrList Copy: ";
-        if(vStrList[ui->comboBox->currentIndex()].isEmpty())
-        {
-            ui->textEdit_2->setText("StrList empty");
-        }
+//    else if(ui->StringList->isChecked())
+//    {
+//        var = "StrList Copy: ";
+//        if(vStrList[ui->comboBox->currentIndex()].isEmpty())
+//        {
+//            ui->textEdit_2->setText("StrList empty");
+//        }
 
-        else
-        {
-            for(st = vStrList[ui->comboBox->currentIndex()].begin();
-                st != vStrList[ui->comboBox->currentIndex()].end(); ++st)
-            {
-                var += *st;
-                var += " ";
-                ui->textEdit_2->setText(QString::fromStdString(var));
-            }
-        }
-    }
+//        else
+//        {
+//            for(st = vStrList[ui->comboBox->currentIndex()].begin();
+//                st != vStrList[ui->comboBox->currentIndex()].end(); ++st)
+//            {
+//                var += *st;
+//                var += " ";
+//                ui->textEdit_2->setText(QString::fromStdString(var));
+//            }
+//        }
+//    }
 
     else
     {
